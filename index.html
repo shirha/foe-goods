@@ -22,6 +22,9 @@
       width: 20px;}
     table {margin: 0;}
     button {width: 296px;}
+    #b1 {width: 352px;}
+    #b2 {width: 372px;}
+    #b3 {width: 392px;}
     .goods {display: none;}
   </style>
 </head>
@@ -29,32 +32,35 @@
   <h1>Resource Tracker</h1>
   
   <div id="resource-list">
+    <button id=b1>b1</button>
+    <button id=b2>b2</button>
+    <button id=b3>b3</button>
     <!-- JavaScript will populate this section -->
   </div>
-
+  <div id="msg"></div>
   <script>
     const resources = [
-   ["Bronze Age", ["Dye", "Lumber", "Marble", "Stone", "Wine"]],
-   ["Iron Age", ["Cloth", "Ebony", "Iron", "Jewelry", "Limestone"]],
-   ["Early Middle Ages", ["Alabaster", "Copper", "Gold", "Granite", "Honey"]],
-   ["High Middle Ages", ["Brick", "Dried Herbs", "Glass", "Rope", "Salt"]],
-   ["Late Middle Ages", ["Basalt", "Brass", "Gunpowder", "Silk", "Talc Powder"]],
-   ["Colonial Age", ["Coffee", "Paper", "Porcelain", "Tar", "Wire"]],
-   ["Industrial Age", ["Coke", "Fertilizer", "Rubber", "Textiles", "Whale Oil"]],
-   ["Progressive Era", ["Asbestos", "Explosives", "Gasoline", "Machine Parts", "Tinplate"]],
-   ["Modern Era", ["Convenience Food", "Ferroconcrete", "Flavorants", "Luxury Materials", "Packaging"]],
-   ["Postmodern Era", ["Genome Data", "Industrial Filters", "Renewable Resources", "Semiconductors", "Steel"]],
-   ["Contemporary Era", ["Bionics Data", "Electromagnets", "Gas", "Plastics", "Robots"]],
-   ["Tomorrow Era", ["Nutrition Research", "Papercrete", "Preservatives", "Smart Materials", "Translucent Concrete"]],
-   ["Future Era", ["Algae", "Biogeochemical Data", "Nanoparticles", "Purified Water", "Superconductors"]],
-   ["Arctic Future", ["A.I. Data", "Bioplastics", "Nanowire", "Paper Batteries", "Transester Gas"]],
-   ["Oceanic Future", ["Artificial Scales", "Biolight", "Corals", "Pearls", "Plankton"]],
-   ["Virtual Future", ["Cryptocash", "Data Crystals", "Golden Rice", "Nanites", "Tea Silk"]],
-   ["Space Age Mars", ["BioTech Crops", "Fusion Reactors", "Lubricant", "Mars Microbes", "Superalloys"]],
-   ["Space Age Asteroid Belt", ["Bromine", "Compound Fluids", "Nickel", "Platinum Crystals", "Processed Materials"]],
-   ["Space Age Venus", ["Glowing Seaweed", "Herbal Snack", "Microgreen Supplement", "Soy Proteins", "Sugar Crystals"]],
-   ["Space Age Jupiter Moon", ["Advanced DNA Data", "Bio Creatures", "Enhanced Porifera", "Red Algae", "Topological Records"]]
-];
+      ["Bronze Age", ["Dye", "Lumber", "Marble", "Stone", "Wine"]],
+      ["Iron Age", ["Cloth", "Ebony", "Iron", "Jewelry", "Limestone"]],
+      ["Early Middle Ages", ["Alabaster", "Copper", "Gold", "Granite", "Honey"]],
+      ["High Middle Ages", ["Brick", "Dried Herbs", "Glass", "Rope", "Salt"]],
+      ["Late Middle Ages", ["Basalt", "Brass", "Gunpowder", "Silk", "Talc Powder"]],
+      ["Colonial Age", ["Coffee", "Paper", "Porcelain", "Tar", "Wire"]],
+      ["Industrial Age", ["Coke", "Fertilizer", "Rubber", "Textiles", "Whale Oil"]],
+      ["Progressive Era", ["Asbestos", "Explosives", "Gasoline", "Machine Parts", "Tinplate"]],
+      ["Modern Era", ["Convenience Food", "Ferroconcrete", "Flavorants", "Luxury Materials", "Packaging"]],
+      ["Postmodern Era", ["Genome Data", "Industrial Filters", "Renewable Resources", "Semiconductors", "Steel"]],
+      ["Contemporary Era", ["Bionics Data", "Electromagnets", "Gas", "Plastics", "Robots"]],
+      ["Tomorrow Era", ["Nutrition Research", "Papercrete", "Preservatives", "Smart Materials", "Translucent Concrete"]],
+      ["Future Era", ["Algae", "Biogeochemical Data", "Nanoparticles", "Purified Water", "Superconductors"]],
+      ["Arctic Future", ["A.I. Data", "Bioplastics", "Nanowire", "Paper Batteries", "Transester Gas"]],
+      ["Oceanic Future", ["Artificial Scales", "Biolight", "Corals", "Pearls", "Plankton"]],
+      ["Virtual Future", ["Cryptocash", "Data Crystals", "Golden Rice", "Nanites", "Tea Silk"]],
+      ["Space Age Mars", ["BioTech Crops", "Fusion Reactors", "Lubricant", "Mars Microbes", "Superalloys"]],
+      ["Space Age Asteroid Belt", ["Bromine", "Compound Fluids", "Nickel", "Platinum Crystals", "Processed Materials"]],
+      ["Space Age Venus", ["Glowing Seaweed", "Herbal Snack", "Microgreen Supplement", "Soy Proteins", "Sugar Crystals"]],
+      ["Space Age Jupiter Moon", ["Advanced DNA Data", "Bio Creatures", "Enhanced Porifera", "Red Algae", "Topological Records"]]
+    ];
 
     const resourceList = document.getElementById('resource-list');
 
@@ -111,6 +117,7 @@
         goodsContainer.style.display = goodsContainer.style.display === 'none' ? 'block' : 'none';
       });
     });
+    document.getElementById('msg').innerHTML = document.getElementById('resource-list').offsetWidth;
   </script>
 </body>
 </html>
