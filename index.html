@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Resource Tracker</title>
+  <style>
+  @font-face {
+    font-family: "Lora"; 
+    src: url("Lora-Regular.ttf");}
+  *:not(h1) {
+    font-family: "Lora"; 
+    font-size: 22px;}
+    label,button {display: block;}
+    button,input {margin-top: 2px;}
+    tr:nth-child(even) {background: #f4f4f4;}
+    td:first-child {width: 214px;}
+    input {width: 40px;}
+    button {width: 274px;}
+    .goods {
+      display: none;
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Resource Tracker</h1>
+  
+  <div id="resource-list">
+    <!-- JavaScript will populate this section -->
+  </div>
+  <div id="msg"></div>
+
+  <script>
+    const resources = [
+   ["Bronze Age", ["Dye", "Lumber", "Marble", "Stone", "Wine"]],
+   ["Iron Age", ["Cloth", "Ebony", "Iron", "Jewelry", "Limestone"]],
+   ["Early Middle Ages", ["Alabaster", "Copper", "Gold", "Granite", "Honey"]],
+   ["High Middle Ages", ["Brick", "Dried Herbs", "Glass", "Rope", "Salt"]],
+   ["Late Middle Ages", ["Basalt", "Brass", "Gunpowder", "Silk", "Talc Powder"]],
+   ["Colonial Age", ["Coffee", "Paper", "Porcelain", "Tar", "Wire"]],
+   ["Industrial Age", ["Coke", "Fertilizer", "Rubber", "Textiles", "Whale Oil"]],
+   ["Progressive Era", ["Asbestos", "Explosives", "Gasoline", "Machine Parts", "Tinplate"]],
+   ["Modern Era", ["Convenience Food", "Ferroconcrete", "Flavorants", "Luxury Materials", "Packaging"]],
+   ["Postmodern Era", ["Genome Data", "Industrial Filters", "Renewable Resources", "Semiconductors", "Steel"]],
+   ["Contemporary Era", ["Bionics Data", "Electromagnets", "Gas", "Plastics", "Robots"]],
+   ["Tomorrow Era", ["Nutrition Research", "Papercrete", "Preservatives", "Smart Materials", "Translucent Concrete"]],
+   ["Future Era", ["Algae", "Biogeochemical Data", "Nanoparticles", "Purified Water", "Superconductors"]],
+   ["Arctic Future", ["A.I. Data", "Bioplastics", "Nanowire", "Paper Batteries", "Transester Gas"]],
+   ["Oceanic Future", ["Artificial Scales", "Biolight", "Corals", "Pearls", "Plankton"]],
+   ["Virtual Future", ["Cryptocash", "Data Crystals", "Golden Rice", "Nanites", "Tea Silk"]],
+   ["Space Age Mars", ["BioTech Crops", "Fusion Reactors", "Lubricant", "Mars Microbes", "Superalloys"]],
+   ["Space Age Asteroid Belt", ["Bromine", "Compound Fluids", "Nickel", "Platinum Crystals", "Processed Materials"]],
+   ["Space Age Venus", ["Glowing Seaweed", "Herbal Snack", "Microgreen Supplement", "Soy Proteins", "Sugar Crystals"]],
+   ["Space Age Jupiter Moon", ["Advanced DNA Data", "Bio Creatures", "Enhanced Porifera", "Red Algae", "Topological Records"]]
+];
+
+    const resourceList = document.getElementById('resource-list');
+
+    resources.forEach(([era, goods]) => {
+      const eraButton = document.createElement('button');
+      eraButton.textContent = era;
+      resourceList.appendChild(eraButton);
+
+      const goodsContainer = document.createElement('table');
+      goodsContainer.className = 'goods';
+      goodsContainer.style.display = 'none';
+      resourceList.appendChild(goodsContainer);
+
+      goods.forEach(good => {
+        const localStorageKey = 'foe_' + good; // Add 'foe_' prefix
+        const tr = document.createElement('tr');
+        let td = document.createElement('td');
+        td.textContent = good; // + ': ';
+        tr.appendChild(td);
+        td = document.createElement('td');
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.min = '0';
+        input.value = localStorage.getItem(localStorageKey) || ''; // Load value from localStorage
+        td.appendChild(input);
+        tr.appendChild(td);
+        goodsContainer.appendChild(tr);
+
+        input.addEventListener('input', () => {
+          localStorage.setItem(localStorageKey, input.value); // Save value to localStorage
+        });
+      });
+
+      eraButton.addEventListener('click', () => {
+        goodsContainer.style.display = goodsContainer.style.display === 'none' ? 'block' : 'none';
+      });
+    });
+    document.getElementById('msg').innerHTML = document.getElementById('resource-list').offsetWidth;
+  </script>
+</body>
+</html>
