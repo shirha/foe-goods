@@ -2,20 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Resource Tracker</title>
   <style>
+  @font-face {
+    font-family: "Lora"; 
+    src: url("Lora-Regular.ttf");}
+  *:not(h1) {
+    font-family: "Lora"; 
+    font-size: 22px;}
     label,button {display: block;}
     button,input {margin-top: 2px;}
-    tr:nth-child(even) td:nth-child(2) {background: #f4f4f4;}
-    td:nth-child(2) {width: 142px; padding-left: 4px; border-radius: 4px;}
+    tr:nth-child(even) {background: #f4f4f4;}
+    td:first-child {width: 214px;}
     input {width: 40px;}
-    input[type="checkbox"] {
-      margin: 0;
-      width: 20px;}
-    table {margin: 0;}
-    button {width: 224px;}
-    .goods {display: none;}
+    button {width: 274px;}
+    .goods {
+      display: none;
+      margin-left: 5px;
+    }
   </style>
 </head>
 <body>
@@ -24,6 +30,7 @@
   <div id="resource-list">
     <!-- JavaScript will populate this section -->
   </div>
+  <div id="msg"></div>
 
   <script>
     const resources = [
@@ -64,39 +71,20 @@
       goods.forEach(good => {
         const localStorageKey = 'foe_' + good; // Add 'foe_' prefix
         const tr = document.createElement('tr');
-
-        // resource deposit checkbox
         let td = document.createElement('td');
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.checked = localStorage.getItem(localStorageKey + '_deposit') == 'true' ? true : false;
-        checkbox.addEventListener('change', function() {
-          if (this.checked) {
-            localStorage.setItem(localStorageKey + '_deposit', 'true');
-          } else {
-            localStorage.removeItem(localStorageKey + '_deposit');
-          }
-        });
-        td.appendChild(checkbox);
-        tr.appendChild(td);
-
-        // resource name
-        td = document.createElement('td');
         td.textContent = good; // + ': ';
         tr.appendChild(td);
-
-        // inventory amount
         td = document.createElement('td');
         const input = document.createElement('input');
         input.type = 'number';
         input.min = '0';
-        input.value = localStorage.getItem(localStorageKey) || '';
+        input.value = localStorage.getItem(localStorageKey) || ''; // Load value from localStorage
         td.appendChild(input);
         tr.appendChild(td);
         goodsContainer.appendChild(tr);
 
         input.addEventListener('input', () => {
-          localStorage.setItem(localStorageKey, input.value);
+          localStorage.setItem(localStorageKey, input.value); // Save value to localStorage
         });
       });
 
@@ -104,6 +92,7 @@
         goodsContainer.style.display = goodsContainer.style.display === 'none' ? 'block' : 'none';
       });
     });
+    document.getElementById('msg').innerHTML = document.getElementById('resource-list').offsetWidth;
   </script>
 </body>
 </html>
